@@ -83,5 +83,10 @@ A small number of original sound effects are included:
 The library also includes a sample melody:
 - HAPPY_BIRTHDAY
 
+
+### Projects using this library
+- [Jukephone](https://github.com/TuriSc/Jukephone)
+
+
 ### Version history
 - 2023.09.25 - v1.0.0 - First release
