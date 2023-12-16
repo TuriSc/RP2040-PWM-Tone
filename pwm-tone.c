@@ -21,7 +21,7 @@ uint16_t melody_index;
 uint16_t rest_duration = 10;
 uint16_t tempo = 120;
 
-void tone_init(struct tonegenerator_t* gen, uint8_t gpio){
+void tone_init(tonegenerator_t *gen, uint8_t gpio){
     gen->gpio = gpio;
     gen->slice = pwm_gpio_to_slice_num(gpio);
     gen->channel = pwm_gpio_to_channel(gpio);
@@ -31,7 +31,7 @@ void tone_init(struct tonegenerator_t* gen, uint8_t gpio){
     clock = clock_get_hz(clk_sys);
 }
 
-void tone(struct tonegenerator_t* gen, int freq, uint16_t duration) {
+void tone(tonegenerator_t *gen, int freq, uint16_t duration) {
     if(freq != REST){
         _tone_pwm_on(gen, freq);
         if (tone_a) cancel_alarm(tone_a);
@@ -39,12 +39,13 @@ void tone(struct tonegenerator_t* gen, int freq, uint16_t duration) {
     }
 }
 
-void melody(struct tonegenerator_t* gen, struct note_t *notes, int8_t repeat){
+void melody(tonegenerator_t *gen, struct note_t *notes, int8_t repeat){
     melody_repeat = repeat;
     melody_index = 0;
     struct melody_t mel;
     mel.notes = notes;
     gen->mel = mel;
+    gen->playing = true;
     _melody_step(gen);
 }
 
@@ -56,32 +57,34 @@ void set_rest_duration(uint16_t duration){
     rest_duration = duration;
 }
 
-void stop_tone(struct tonegenerator_t* gen){
+void stop_tone(tonegenerator_t *gen){
     pwm_set_enabled(gen->slice, false);
+    gen->playing = false;
 }
 
-void stop_melody(struct tonegenerator_t* gen){
+void stop_melody(tonegenerator_t *gen){
     if (tone_a) cancel_alarm(tone_a);
     if (melody_a) cancel_alarm(melody_a);
     pwm_set_enabled(gen->slice, false);
 }
 
-void _pwm_set_freq(struct tonegenerator_t* gen, float freq) {
+void _pwm_set_freq(tonegenerator_t *gen, float freq) {
     float divider = (float) clock / (freq * 10000.0);
     pwm_set_clkdiv(gen->slice, divider);
     pwm_set_wrap(gen->slice, 10000);
     pwm_set_gpio_level(gen->gpio, 5000);
 }
 
-void _tone_pwm_on(struct tonegenerator_t* gen, int freq){
+void _tone_pwm_on(tonegenerator_t *gen, int freq){
     if(freq < NOTE_G1) {freq = NOTE_G1;}
     else if(freq > NOTE_FS9) {freq = NOTE_FS9;}
     pwm_set_enabled(gen->slice, false);
     _pwm_set_freq(gen, freq);
     pwm_set_enabled(gen->slice, true);
+    gen->playing = true;
 }
 
-void _melody_step(struct tonegenerator_t* gen){
+void _melody_step(tonegenerator_t *gen){
     struct melody_t mel = gen->mel;
     struct note_t note = mel.notes[melody_index];
 
@@ -92,6 +95,8 @@ void _melody_step(struct tonegenerator_t* gen){
         }
         if(melody_repeat != 0){
             _melody_step(gen);
+        } else {
+            gen->playing = false;
         }
         
     } else {
@@ -106,20 +111,21 @@ void _melody_step(struct tonegenerator_t* gen){
     }
 }
 
-void _melody_tone(struct tonegenerator_t* gen, int freq, uint16_t duration) {
+void _melody_tone(tonegenerator_t *gen, int freq, uint16_t duration) {
     if(freq != REST){ _tone_pwm_on(gen, freq); }
     if (melody_a) cancel_alarm(melody_a);
     melody_a = add_alarm_in_ms(duration, _melody_note_complete, gen, true);
 }
 
 static int64_t _tone_complete(alarm_id_t id, void *user_data) {
-    struct tonegenerator_t* gen = (struct tonegenerator_t*) user_data;
+    tonegenerator_t *gen = (tonegenerator_t*) user_data;
     pwm_set_enabled(gen->slice, false);
+    gen->playing = false;
     return 0;
 }
 
 static int64_t _melody_note_complete(alarm_id_t id, void *user_data) {
-    struct tonegenerator_t* gen = (struct tonegenerator_t*) user_data;
+    tonegenerator_t *gen = (tonegenerator_t*) user_data;
     pwm_set_enabled(gen->slice, false);
 
     if(rest_duration > 0){

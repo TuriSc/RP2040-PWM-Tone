@@ -14,32 +14,40 @@
                           // The other terminal of the buzzer is connected to ground.
 
 // Create an instance of the tone generator
-struct tonegenerator_t generator;
+tonegenerator_t generator;
 
 int main() {
     stdio_init_all();
+    sleep_ms(2000);//REMOVE
+    printf("start\n");
 
     // Initialize the tone generator, assigning it the output pin
     tone_init(&generator, PIEZO_PIN);
 
-    // Play a single tone for 200ms.
+    // Play two single tones for 200ms each.
     // Notes are defined in the file pitches.h
     tone(&generator, NOTE_A4, 200);
+    while(generator.playing) { sleep_ms(2); }
+    tone(&generator, NOTE_A5, 200);
 
     // Let's wait before calling the following functions,
     // because melody() and tone() are non-blocking.
-    sleep_ms(700);
+    sleep_ms(500);
 
     // Play one of the preset melodies. The last parameter is the number
-    // of repetitions. Set it to -1 to repeat the melody continuosly.
+    // of repetitions. Set it to -1 to repeat the melody continuously.
     melody(&generator, RINGTONE_1, 3);
-    sleep_ms(3000);
+    while(generator.playing) { sleep_ms(2); }
+
+    sleep_ms(500);
 
     // Play a longer melody
     melody(&generator, HAPPY_BIRTHDAY, 0);
 
-    // Let's delay further instuctions for longer while the melody plays.
-    sleep_ms(20000); // 20 seconds
+    // Wait while the melody plays
+    while(generator.playing) { sleep_ms(2); }
+
+    sleep_ms(500);
 
     // Change the duration of silence between notes. The default is 10ms.
     set_rest_duration(0);
