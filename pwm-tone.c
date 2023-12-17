@@ -76,8 +76,8 @@ void _pwm_set_freq(tonegenerator_t *gen, float freq) {
 }
 
 void _tone_pwm_on(tonegenerator_t *gen, int freq){
-    if(freq < NOTE_G1) {freq = NOTE_G1;}
-    else if(freq > NOTE_FS9) {freq = NOTE_FS9;}
+    if(freq < NOTE_G1) {freq = NOTE_NONE;}
+    else if(freq > NOTE_FS9) {freq = NOTE_NONE;}
     pwm_set_enabled(gen->slice, false);
     _pwm_set_freq(gen, freq);
     pwm_set_enabled(gen->slice, true);
