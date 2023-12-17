@@ -95,5 +95,6 @@ The library also includes a sample melody:
 
 
 ### Version history
+- 2023.12.17 - v1.1.1 - Disable out of range notes; Code refactoring
 - 2023.12.16 - v1.1.0 - Added playing attribute; Changed struct to typedef
 - 2023.09.25 - v1.0.0 - First release

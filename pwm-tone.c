@@ -3,7 +3,6 @@
  * Tone generation library for Raspberry Pi Pico. Plays melodies
  * and chirping sounds via PWM through a buzzer or speaker.
  * By Turi Scandurra – https://turiscandurra.com/circuits
- * v1.0.0 - 2023.09.25
 */
 
 #include "pwm-tone.h"
@@ -15,11 +14,11 @@ static alarm_id_t tone_a;
 static alarm_id_t melody_a;
 static alarm_id_t rest_a;
 
-uint32_t clock;
-uint16_t melody_repeat;
-uint16_t melody_index;
-uint16_t rest_duration = 10;
-uint16_t tempo = 120;
+static uint32_t clock;
+static uint16_t melody_repeat;
+static uint16_t melody_index;
+static uint16_t rest_duration = 10;
+static uint16_t tempo = 120;
 
 void tone_init(tonegenerator_t *gen, uint8_t gpio){
     gen->gpio = gpio;

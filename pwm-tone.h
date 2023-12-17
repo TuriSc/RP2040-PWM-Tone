@@ -3,7 +3,6 @@
  * Tone generation library for Raspberry Pi Pico. Plays melodies
  * and chirping sounds via PWM through a buzzer or speaker.
  * By Turi Scandurra – https://turiscandurra.com/circuits
- * v1.0.0 - 2023.09.25
 */
 
 #ifndef PWM_TONE_H
