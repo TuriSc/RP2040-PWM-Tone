@@ -22,7 +22,7 @@ typedef struct note_t {
 
 typedef struct melody_t {     
     bool playing;           
-    struct note_t * notes;
+    note_t * notes;
 } melody_t;
 
 typedef struct tonegenerator_t {
@@ -30,7 +30,7 @@ typedef struct tonegenerator_t {
     uint8_t gpio;
     uint8_t slice;
     uint8_t channel;
-    struct melody_t mel;
+    melody_t mel;
 } tonegenerator_t;
 
 void tone_init(tonegenerator_t *gen, uint8_t gpio);

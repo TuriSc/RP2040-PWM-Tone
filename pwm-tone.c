@@ -38,10 +38,10 @@ void tone(tonegenerator_t *gen, int freq, uint16_t duration) {
     }
 }
 
-void melody(tonegenerator_t *gen, struct note_t *notes, int8_t repeat){
+void melody(tonegenerator_t *gen, note_t *notes, int8_t repeat){
     melody_repeat = repeat;
     melody_index = 0;
-    struct melody_t mel;
+    melody_t mel;
     mel.notes = notes;
     gen->mel = mel;
     gen->playing = true;
@@ -84,8 +84,8 @@ void _tone_pwm_on(tonegenerator_t *gen, int freq){
 }
 
 void _melody_step(tonegenerator_t *gen){
-    struct melody_t mel = gen->mel;
-    struct note_t note = mel.notes[melody_index];
+    melody_t mel = gen->mel;
+    note_t note = mel.notes[melody_index];
 
     if (note.freq == MELODY_END){
         melody_index = 0;

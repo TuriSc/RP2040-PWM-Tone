@@ -1,7 +1,7 @@
 #ifndef TONE_MELODIES_H
 #define TONE_MELODIES_H
 
-struct note_t POSITIVE[] = {
+note_t POSITIVE[] = {
     {NOTE_C4, 16},
     {NOTE_AS4, 16},
     {NOTE_C5, 16},        
@@ -9,7 +9,7 @@ struct note_t POSITIVE[] = {
     {MELODY_END, 0},
 };
 
-struct note_t NEGATIVE[] = {
+note_t NEGATIVE[] = {
     {NOTE_C5, 16},
     {NOTE_AS4, 16},
     {NOTE_C4, 16},        
@@ -17,7 +17,7 @@ struct note_t NEGATIVE[] = {
     {MELODY_END, 0},
 };
 
-struct note_t ERROR[] = {
+note_t ERROR[] = {
     {NOTE_C6, 32},
     {REST, 64},
     {NOTE_C6, 32},
@@ -30,7 +30,7 @@ struct note_t ERROR[] = {
     {MELODY_END, 0},
 };
 
-struct note_t CONFIRM[] = {
+note_t CONFIRM[] = {
     {NOTE_C7, 128},
     {REST, 128},
     {NOTE_C7, 128},
@@ -43,7 +43,7 @@ struct note_t CONFIRM[] = {
     {MELODY_END, 0},
 };
 
-struct note_t REJECT[] = {
+note_t REJECT[] = {
     {NOTE_CM1, 128},
     {REST, 128},
     {NOTE_CM1, 128},
@@ -56,7 +56,7 @@ struct note_t REJECT[] = {
     {MELODY_END, 0},
 };
 
-struct note_t SWEEP[] = {
+note_t SWEEP[] = {
     {NOTE_CM1, 128},
     {NOTE_C0, 128},
     {NOTE_C1, 128},
@@ -72,14 +72,14 @@ struct note_t SWEEP[] = {
     {MELODY_END, 0},
 };
 
-struct note_t COIN[] = {
+note_t COIN[] = {
     {NOTE_C6, 16},
     {NOTE_C7, 4},
     {REST, 8},
     {MELODY_END, 0},
 };
 
-struct note_t LASER[] = {
+note_t LASER[] = {
     {NOTE_C8, 128},
     {NOTE_C7, 128},
     {NOTE_C6, 128},
@@ -89,7 +89,7 @@ struct note_t LASER[] = {
     {MELODY_END, 0},
 };
 
-struct note_t POWERUP[] = {
+note_t POWERUP[] = {
     {NOTE_C5, 128},
     {NOTE_CS5, 128},
     {NOTE_D5, 128},
@@ -102,7 +102,7 @@ struct note_t POWERUP[] = {
     {MELODY_END, 0},
 };
 
-struct note_t VICTORY[] = {
+note_t VICTORY[] = {
     {NOTE_G4, 8},
     {NOTE_G4, 16},
     {NOTE_G4, 16},
@@ -111,7 +111,7 @@ struct note_t VICTORY[] = {
     {MELODY_END, 0},
 };
 
-struct note_t DEFEAT[] = {
+note_t DEFEAT[] = {
     {NOTE_C4, 16},
     {NOTE_AS3, 16},
     {NOTE_G3, 16},
@@ -121,7 +121,7 @@ struct note_t DEFEAT[] = {
     {MELODY_END, 0},
 };
 
-struct note_t FANFARE[] = {
+note_t FANFARE[] = {
     {NOTE_C4, -4},
     {NOTE_E4, 8},
     {NOTE_G4, 8},
@@ -130,14 +130,14 @@ struct note_t FANFARE[] = {
     {MELODY_END, 0},
 };
 
-struct note_t ALARM_1[] = {
+note_t ALARM_1[] = {
     {NOTE_C7, 8},
     {NOTE_A6, 8},
     {REST, 4},
     {MELODY_END, 0},
 };
 
-struct note_t ALARM_2[] = {
+note_t ALARM_2[] = {
     {NOTE_C8, 8},
     {REST, 32},
     {NOTE_C8, 8},
@@ -145,7 +145,7 @@ struct note_t ALARM_2[] = {
     {MELODY_END, 0},
 };
 
-struct note_t ALARM_3[] = {
+note_t ALARM_3[] = {
     {NOTE_C7, 32},
     {REST, -32},
     {NOTE_C7, 32},
@@ -158,7 +158,7 @@ struct note_t ALARM_3[] = {
     {MELODY_END, 0},
 };
 
-struct note_t RINGTONE_1[] = {
+note_t RINGTONE_1[] = {
     {NOTE_A7, 64},
     {NOTE_A6, 64},
     {NOTE_A7, 64},
@@ -178,7 +178,7 @@ struct note_t RINGTONE_1[] = {
     {MELODY_END, 0},
 };
 
-struct note_t RINGTONE_2[] = {
+note_t RINGTONE_2[] = {
     {NOTE_D7, 128},
     {NOTE_E6, 128},
     {NOTE_D7, 128},
@@ -198,7 +198,7 @@ struct note_t RINGTONE_2[] = {
     {MELODY_END, 0},
 };
 
-struct note_t RINGTONE_3[] = {
+note_t RINGTONE_3[] = {
     {NOTE_E8, 128},
     {NOTE_C8, 128},
     {NOTE_E8, 128},
@@ -218,7 +218,7 @@ struct note_t RINGTONE_3[] = {
     {MELODY_END, 0},
 };
 
-struct note_t DANGER[] = {
+note_t DANGER[] = {
     {NOTE_FS5, 8},
     {REST, -8},
     {NOTE_FS5, 8},
@@ -231,7 +231,7 @@ struct note_t DANGER[] = {
 };
 
 
-struct note_t EXPLOSION[] = {
+note_t EXPLOSION[] = {
     {NOTE_G9, 128},
     {NOTE_E9, 128},
     {NOTE_C9, 128},
@@ -269,7 +269,7 @@ struct note_t EXPLOSION[] = {
     {MELODY_END, 0},
 };
 
-struct note_t HAPPY_BIRTHDAY[] = {
+note_t HAPPY_BIRTHDAY[] = {
     {NOTE_C4, 4},
     {NOTE_C4, 8}, 
     {NOTE_D4, -4},

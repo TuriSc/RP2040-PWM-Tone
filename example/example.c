@@ -61,7 +61,7 @@ int main() {
     // a duration of 16 is half a duration of 8. Negative values represent dotted notation,
     // so that -8 = 8 + (8/2) = 12. This data structure is inspired by the work at
     // https://github.com/robsoncouto/arduino-songs/
-    struct note_t sfx[] = {
+    note_t sfx[] = {
         {NOTE_C4, 16},
         {NOTE_C5, 32},
         {NOTE_C6, 64},
