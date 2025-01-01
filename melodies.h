@@ -1,3 +1,10 @@
+/**
+ * @file melodies.h
+ * @brief Predefined melodies for the Pico PWM Tone generation library.
+ * @author Turi Scandurra
+ * @see https://turiscandurra.com/circuits
+ */
+
 #ifndef TONE_MELODIES_H
 #define TONE_MELODIES_H
 

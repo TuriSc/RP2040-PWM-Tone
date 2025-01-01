@@ -1,5 +1,9 @@
-// Pitch of all chromatic notes between C-1 and G9.
-// Turi Scandurra 2023
+/**
+ * @file pitches.h
+ * @brief Pitch values for chromatic notes between C-1 and G9.
+ * @author Turi Scandurra
+ * @see https://turiscandurra.com/circuits
+ */
 
 #ifndef TONE_PITCHES_H
 #define TONE_PITCHES_H
@@ -132,10 +136,22 @@
 #define NOTE_F9     11175.303
 #define NOTE_FS9    11839.822
 #define NOTE_G9     12543.854 // Pitches higher than FS9 can't be played by _pwm_set_freq()
+
+/**
+ * @def REST
+ * @brief Pitch value for rest (0.0 Hz).
+ */
 #define REST        0.0
+
+/**
+ * @def MELODY_END
+ * @brief Special value to indicate the end of a melody (-1.0 Hz).
+ */
 #define MELODY_END  -1.0
 
-// Array matching midi notes to pitch values
+/**
+ * @brief Array of pitch values for all MIDI notes.
+ */
 static const int midi_to_pitch[128] = {
     NOTE_CM1, NOTE_CSM1, NOTE_DM1, NOTE_DSM1, NOTE_EM1, NOTE_FM1, NOTE_FSM1, NOTE_GM1, NOTE_GSM1, NOTE_AM1, NOTE_ASM1, NOTE_BM1,
     NOTE_C0, NOTE_CS0, NOTE_D0, NOTE_DS0, NOTE_E0, NOTE_F0, NOTE_FS0, NOTE_G0, NOTE_GS0, NOTE_A0, NOTE_AS0, NOTE_B0,
